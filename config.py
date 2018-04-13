@@ -1,4 +1,5 @@
 import os
+import secret
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -10,8 +11,8 @@ class Config:
     MAIL_PORT = int(os.environ.get('MAIL_PORT', '25'))
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in \
         ['true', 'on', '1']
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') 
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or secret.username
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or secret.password
     FLASKY_MAIL_SUBJECT_PREFIX = '[DoubanJ]'
     FLASKY_MAIL_SENDER = 'DoubanJ Admin <919127001@qq.com>'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN') 

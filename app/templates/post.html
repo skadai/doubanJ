@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}DoubanJ - Post{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h3>
+        {{posts[0].movie.name}}的影评
+        <span class="label label-primary">
+            <a href="/movie/{{posts[0].movie_id}}" style="color:white">返回影片</a>
+        </span>
+    </h3>
+</div>
+{% include '_posts.html' %}
+<h4 id="comments">Comments</h4>
+<div class="comment-form">
+    {{ wtf.quick_form(form) }}
+</div>
+{% include '_comments.html' %}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.post', fragment='#comments', id=posts[0].id) }}
+</div>
+{% endif %}
+{% endblock %}

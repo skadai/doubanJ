@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}DoubanJ - {{ movie.name }}{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <img class="img-rounded profile-thumbnail movie-cover" src={{ movie.cover }}>
+    <div class="movie-profile-header">
+        <div class="panel panel-info movie-panel">
+            <div class="panel-heading">
+                    <h3>
+                        {{ movie.name }}
+                        <a href="http://ifkdy.com/?q={{movie.name}}">
+                        <span class="label label-primary ">下载</span>
+                        </a>
+                    </h3>
+                {% for item in users %}
+                <span class="label label-warning"><a href="/user/{{item.user.username}}">{{ item.user.username}}</a></span>
+                {% endfor %}
+                <span>共计<span class="badge badge-success">{{ movie.seer.count()}}</span> 人收藏了它 </span>
+            </div>
+            <div class="panel-body">
+                <h4> 导演: {% for d in movie.director.strip('[]').split(',')  %}
+                {{ d.strip('\' ') }} &ensp;  {% endfor %}</h4>
+                <h4> 年份: {{ movie.date }}</h4>
+                <h4> 评分: {{ movie.rate }}</h4>
+                <h4> 主演: {% for cast in movie.casts.strip('[]').split(',') %}
+                    {{ cast.strip('\' ')}} &ensp;   {% endfor%}
+                </h4>
+                <h4> 时长: {{ movie.runtime }}分钟</h4>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    {{ wtf.quick_form(form) }}
+</div>
+<h3>影片留言 </h3>
+{% include '_posts.html' %}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.post', fragment='#comments', id=posts[0].id) }}
+</div>
+{% endif %}
+{% endblock %}
+{% block scripts%}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+
+{% endblock %}

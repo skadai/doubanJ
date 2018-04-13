@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}DoubanJ{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello, {% if current_user.is_authenticated %} {{ current_user.username}} {% else%}
+             Stranger {% endif %}!</h1>
+</div>
+<div class="jumbotron">
+    <h2>doubanJ功能介绍</h2>
+    <ul>
+        <li><h3>搜集了大约10000部豆瓣7.0评分以上的电影</h3></li>
+        <li><h3>提供检索，收藏，和评论功能</h3></li>
+        <li><h3>支持导引豆瓣主页和相关下载链接</h3></li>
+    </ul>
+    <p> 如有问题或建议，欢迎反馈至邮箱 <span class="badge">skchang08@126.com</span>
+    </p>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,48 @@
+<div id="id-movie-list">
+<ul class="posts">
+    {% if movies%}
+    <li class="post search-result-header">
+       <div class="post-content ">
+            <div class="post-body">
+                <h3><span class="movie_item col-md-3">年份</span>
+                <span class="movie_item col-md-3">名称 </span>
+                <span class="movie_item col-md-3">评分 </span>
+                </h3>
+            </div>
+        </div>
+    </li>
+    {% endif %}
+
+    {% for movie in movies %}
+    <li class="post ">
+        <div class="post-content">
+            <div class="post-body">
+                <h3><span class="movie_item col-md-3">{{movie.movie.date}} </span>
+                <span class="movie_item col-md-3 movie_name">
+                <a href="/movie/{{movie.movie.id}}">{{movie.movie.name}}</a>
+                </span>
+                <span class="movie_item col-md-3">{{movie.movie.rate}} </span>
+                </h3>
+
+            </div>
+            <div class="post-footer" data-id="{{movie.movie.id}}">
+                {% if user.is_seen(movie.movie)%}
+                <span class="label label-info movie-seen">看过</span>
+                {% elif user.is_wishing(movie.movie)%}
+                <span class="label label-success movie-wanna">想看</span>
+                {% endif %}
+                <a href="https://www.douban.com/subject/{{ movie.movie.movie_id}}">
+                    <span class="label label-default ">豆瓣主页</span>
+                </a>
+                <a href="http://ifkdy.com/?q={{movie.movie.name}}">
+                     <span class="label label-default ">下载</span>
+                </a>
+                {% if user == current_user%}
+                <span class="label label-danger movie-remove">移除</span>
+                {% endif %}
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+</div>

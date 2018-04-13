@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+{% block title %}DoubanJ{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>搜索结果: 共 {{ count}}部电影</h1>
+
+    <div>
+        {{ wtf.quick_form(form) }}
+    </div>
+</div>
+    {% include '_movies.html' %}
+    <div class="pagination">
+        {{ macros.pagination_widget(pagination, '.search') }}
+    </div>
+
+{% endblock %}
+{% block scripts%}
+    <script src='/static/base.js'></script>
+    <script src='/static/movies.js'></script>
+{% endblock %}

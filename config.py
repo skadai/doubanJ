@@ -2,19 +2,19 @@ import os
 import secret
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-
 class Config:
     CACHE_TYPE = 'simple'
     WTF_CSRF_ENABLED = False
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
-    MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.qq.com')
-    MAIL_PORT = int(os.environ.get('MAIL_PORT', '25'))
-    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in \
+    MAIL_SERVER = os.environ.get('MAIL_SERVER') or secret.mail_server
+    MAIL_PORT = int(os.environ.get('MAIL_PORT', secret.mail_port))
+    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'false').lower() in \
         ['true', 'on', '1']
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or secret.username
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or secret.password
+    MAIL_USERNAME = secret.username
+    MAIL_PASSWORD = secret.password
+    MAIL_USE_SSL = True
     FLASKY_MAIL_SUBJECT_PREFIX = '[DoubanJ]'
-    FLASKY_MAIL_SENDER = 'DoubanJ Admin <919127001@qq.com>'
+    FLASKY_MAIL_SENDER = 'DoubanJ Admin <{}>'.format(secret.username)
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN') 
     SSL_REDIRECT = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False

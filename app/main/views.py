@@ -114,16 +114,18 @@ def seen(movie_id):
 
 
 @main.route('/movie/<movie_id>', methods=["GET","POST"])
-@login_required
 def movie_profile(movie_id):
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(body=form.body.data,
-                    author=current_user._get_current_object(),
-                    movie_id = movie_id)
-        db.session.add(post)
-        db.session.commit()
-        return redirect(url_for('.movie_profile', movie_id = movie_id))
+        if not current_user.is_guest():
+            post = Post(body=form.body.data,
+                        author=current_user._get_current_object(),
+                        movie_id = movie_id)
+            db.session.add(post)
+            db.session.commit()
+            return redirect(url_for('.movie_profile', movie_id=movie_id))
+        else:
+            return redirect(url_for('auth.login'))
     movie = Movie.query.filter_by(id=movie_id).first_or_404()
     wishes = Wish.query.filter_by(movie_id=movie.id)
     users = [{'user': wish.seer, 'timestamp': wish.timestamp } for wish in wishes]

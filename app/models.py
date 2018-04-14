@@ -323,6 +323,10 @@ class User(UserMixin, db.Model):
     def is_administrator(self):
         return self.can(Permission.ADMIN)
 
+    @staticmethod
+    def is_guest():
+        return False
+
     def ping(self):
         self.last_seen = datetime.utcnow()
         db.session.add(self)
@@ -422,6 +426,9 @@ class AnonymousUser(AnonymousUserMixin):
 
     def is_administrator(self):
         return False
+
+    def is_guest(self):
+        return True
 
 
 login_manager.anonymous_user = AnonymousUser

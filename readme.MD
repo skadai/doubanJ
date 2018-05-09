@@ -13,5 +13,8 @@
 ## 爬虫脚本
 1. 脚本基于scrapy框架检测豆瓣上的新增的优秀电影，收录进数据库中
 
-demo展示可以看这里：
+## 部署地址
 http://118.126.94.217:3000
+
+## demo效果
+![doubanJ](https://github.com/skadai/markdownphoto/blob/master/%E6%8A%80%E6%9C%AF%E8%B5%84%E6%96%99/doubanJ.gif?raw=true)

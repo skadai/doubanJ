@@ -1,4 +1,4 @@
-# doubanJ功能介绍
+﻿# doubanJ功能介绍
 -----
 本项目是学习狗书(flask_web_development)过程的练手，主要参考了书中的博客程序的auth模块
 ## 电影搜索
@@ -14,7 +14,7 @@
 1. 脚本基于scrapy框架检测豆瓣上的新增的优秀电影，收录进数据库中
 
 ## 部署地址
-http://118.126.94.217:3000
+https://skadai.xyz:3000
 
 ## demo效果
 ![doubanJ](https://github.com/skadai/markdownphoto/blob/master/%E6%8A%80%E6%9C%AF%E8%B5%84%E6%96%99/doubanJ.gif?raw=true)

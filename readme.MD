@@ -14,7 +14,7 @@
 1. 脚本基于scrapy框架检测豆瓣上的新增的优秀电影，收录进数据库中
 
 ## 部署地址
-https://skadai.xyz:3000
+https://doubanj.skadai.xyz
 
 ## demo效果
 ![doubanJ](https://github.com/skadai/markdownphoto/blob/master/%E6%8A%80%E6%9C%AF%E8%B5%84%E6%96%99/doubanJ.gif?raw=true)
